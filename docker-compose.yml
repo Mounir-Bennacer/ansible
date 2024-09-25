@@ -1,0 +1,51 @@
+services:
+  ansible:
+    build:
+      context: .
+    container_name: ansible
+    volumes:
+      - ./ansible_data:/etc/ansible
+    networks:
+      ansible_net:
+    depends_on:
+      - server1
+      - server2
+      - server3
+
+  server1:
+    build:
+      context: .
+    container_name: john.doe-1
+    networks:
+      ansible_net:
+        ipv4_address: 172.20.0.10
+    ports:
+      - "2221:22"
+
+  server2:
+    build:
+      context: .
+    container_name: john.doe-2
+    networks:
+      ansible_net:
+        ipv4_address: 172.20.0.11
+
+    ports:
+      - "2222:22"
+
+  server3:
+    build:
+      context: .
+    container_name: john.doe-3
+    networks:
+      ansible_net:
+        ipv4_address: 172.20.0.12
+    ports:
+      - "2223:22"
+
+networks:
+  ansible_net:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.20.0.0/16

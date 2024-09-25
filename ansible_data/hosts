@@ -1,0 +1,5 @@
+[servers]
+john.doe-1 ansible_host=172.20.0.10 ansible_user=ansible_user ansible_port=22
+john.doe-2 ansible_host=172.20.0.11 ansible_user=ansible_user ansible_port=22
+john.doe-3 ansible_host=172.20.0.12 ansible_user=ansible_user ansible_port=22
+
